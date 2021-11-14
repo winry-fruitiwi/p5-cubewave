@@ -13,7 +13,7 @@ code plan:
         maybe color rects to make them neon!
 
  */
-let font
+let font, w
 let cam
 
 function preload() {
@@ -24,7 +24,14 @@ function setup() {
     createCanvas(640, 360, WEBGL)
     colorMode(HSB, 360, 100, 100, 100)
 
-    cam = new Dw.EasyCam(this._renderer, {distance:300})
+    // initialize a new EasyCam, a fork of the Peasycam repository
+    cam = new Dw.EasyCam(this._renderer, {distance:500})
+
+    // width and height of each rectangle or box
+    w = 50
+
+    // ensures proper centering of boxes
+    rectMode(CENTER)
 }
 
 function draw() {
@@ -32,6 +39,20 @@ function draw() {
 
     // noStroke()
 
-    fill(0, 80, 20)
-    box(20)
+    fill(0, 100, 60, 40)
+    rect(0, 0, w)
+
+    // since the height and width are not even, I'll have to hard-code the
+    // values
+    for (let x = -350; x <= 350; x += w) {
+        for (let y = -350; y <= 350; y += w) {
+            push()
+
+            translate(x, y)
+            fill(0, 0, 100, 20)
+            rect(0, 0, w)
+
+            pop()
+        }
+    }
 }
