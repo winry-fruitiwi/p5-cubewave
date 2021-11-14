@@ -14,21 +14,24 @@ code plan:
 
  */
 let font
-// let cam
+let cam
 
 function preload() {
     font = loadFont('data/Meiryo-01.ttf')
 }
 
 function setup() {
-    createCanvas(640, 360)
+    createCanvas(640, 360, WEBGL)
     colorMode(HSB, 360, 100, 100, 100)
 
-    // cam = new Dw.EasyCam(this._renderer, {distance:300})
+    cam = new Dw.EasyCam(this._renderer, {distance:300})
 }
 
 function draw() {
-    background(209, 80, 30)
-    
     background(234, 34, 24)
+
+    // noStroke()
+
+    fill(0, 80, 20)
+    box(20)
 }
