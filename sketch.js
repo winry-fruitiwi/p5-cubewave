@@ -39,10 +39,10 @@ function setup() {
 function draw() {
     background(234, 34, 24)
 
-    // noStroke()
+    noStroke()
 
     fill(0, 100, 60, 40)
-    rect(0, 0, w)
+    // rect(0, 0, w)
 
     // since the height and width are not even, I'll have to hard-code the
     // values
@@ -65,8 +65,11 @@ function draw() {
             // the alpha value of the rectangle
             let a = map(h, -1, 1, 1, 100)
 
-            fill(0, 0, 100, a)
-            rect(0, 0, w)
+            // height of the box
+            let boxHeight = map(h, -1, 1, 200, 700)
+
+            fill(0, 0, 100, 5)
+            box(w, w, boxHeight)
 
             pop()
         }
