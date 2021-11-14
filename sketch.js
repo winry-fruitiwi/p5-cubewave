@@ -14,7 +14,7 @@ code plan:
 
  */
 let font, w
-let cam
+let cam, angle
 
 function preload() {
     font = loadFont('data/Meiryo-01.ttf')
@@ -32,6 +32,8 @@ function setup() {
 
     // ensures proper centering of boxes
     rectMode(CENTER)
+
+    angle = 0
 }
 
 function draw() {
@@ -49,10 +51,26 @@ function draw() {
             push()
 
             translate(x, y)
-            fill(0, 0, 100, 20)
+
+            // this is the distance from the z axis, and determines the
+            // phase of each rectangle drawn.
+            let distance = sqrt(x**2 + y**2)
+
+            // the sine wave included in the alpha calculation.
+            // generalSineFormula = amplitude * sin(period(x+phase)) + y
+            // we want to alter the phase and period, mostly. "What's the
+            // x?", you might ask. It's actually frameCount/someModifier!
+            let h = sin(TAU/width * (angle + distance))
+
+            // the alpha value of the rectangle
+            let a = map(h, -1, 1, 1, 100)
+
+            fill(0, 0, 100, a)
             rect(0, 0, w)
 
             pop()
         }
     }
+
+    angle += 2
 }
