@@ -37,20 +37,20 @@ function setup() {
 }
 
 function draw() {
-    background(234, 34, 24)
+    background(204, 84, 4)
 
     noStroke()
 
     fill(0, 100, 60, 40)
     // rect(0, 0, w)
 
+    let hardCodedHeight = 300
+
     // since the height and width are not even, I'll have to hard-code the
     // values
-    for (let x = -350; x <= 350; x += w) {
-        for (let y = -350; y <= 350; y += w) {
+    for (let x = -hardCodedHeight; x <= hardCodedHeight; x += w) {
+        for (let y = -hardCodedHeight; y <= hardCodedHeight; y += w) {
             push()
-
-            translate(x, y)
 
             // this is the distance from the z axis, and determines the
             // phase of each rectangle drawn.
@@ -66,10 +66,14 @@ function draw() {
             let a = map(h, -1, 1, 1, 100)
 
             // height of the box
-            let boxHeight = map(h, -1, 1, 200, 700)
+            let boxHeight = map(h, -1, 1, -100, 100)
 
-            fill(0, 0, 100, 5)
+            translate(x, y, boxHeight)
+
+            fill(angle % 360, 100, 100, 20)// , 20*abs(sin(angle/40)))
+
             box(w, w, boxHeight)
+            // rect(0, 0, w)
 
             pop()
         }
